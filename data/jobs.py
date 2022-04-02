@@ -15,7 +15,7 @@ class Jobs(SqlAlchemyBase):
     preview = sqlalchemy.Column(sqlalchemy.LargeBinary)
     start_date = sqlalchemy.Column(sqlalchemy.DateTime, default=datetime.datetime.now)
     action = sqlalchemy.Column(sqlalchemy.Boolean, default=True)
-    user = orm.relation('user')
+    user = orm.relation('User')
 
     def __repr__(self):
         return f'<Job> [{self.id}] {self.job}: {self.client}, {self.action}'

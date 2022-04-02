@@ -10,6 +10,13 @@ td.ordinary {
     font-size: 14pt;
     padding: 5px;
 }
+.card-body p{
+    margin: 0; /* Убираем внешний отступ */
+    -webkit-line-clamp: 2; /* Число отображаемых строк */
+    display: -webkit-box; /* Включаем флексбоксы */
+    -webkit-box-orient: vertical; /* Вертикальная ориентация */
+    overflow: hidden; /* Обрезаем всё за пределами блока */
+   }
 h4 {
     color: #cccccc;
     padding: 20px;

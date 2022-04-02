@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<meta charset="UTF-8">
+<h2 align="center">Доступные вакансии</h2>
+{% for service in services %}
+<div class="table_container">
+    <div class="card" style="width: 18rem;">
+        <img src="data:image/jpg;base64,{{ service.preview }}" class="card-img-top" alt="Download image">
+        <div class="card-body">
+            <h5 class="card-title">{{ service.service }}</h5>
+            <p class="card-text">{{ service.description }}</p>
+            <p class="card-text"><small><small>{{ service.price }}</small></small></p>
+            <a href="#" class="btn btn-primary">Переход куда-нибудь</a>
+        </div>
+    </div>
+</div>
+<br>
+{% endfor %}
+
+{% endblock %}
