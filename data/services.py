@@ -5,7 +5,7 @@ from sqlalchemy import orm
 from .db_session import SqlAlchemyBase
 
 
-class Service(SqlAlchemyBase):
+class Services(SqlAlchemyBase):
     __tablename__ = 'services'
 
     id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True, autoincrement=True)

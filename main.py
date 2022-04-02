@@ -5,7 +5,7 @@ from flask_login import LoginManager, login_user, login_required, logout_user
 from data import db_session
 from data.users import User
 from data.jobs import Jobs
-from data.services import Service
+from data.services import Services
 from data.branches import Branch
 from data.register import RegisterForm
 from data.login import LoginForm
@@ -57,10 +57,9 @@ def reqister():
         user = User(
             email=form.email.data,
             nickname=form.nickname.data,
-            password=form.password.data,
-            surname=form.password.data,
-            name=form.password.data,
-            speciality=form.password.data
+            surname=form.surname.data,
+            name=form.name.data,
+            speciality=form.speciality.data
         )
         user.set_password(form.password.data)
         db_sess.add(user)
@@ -72,7 +71,7 @@ def reqister():
 @app.route("/")
 def index():
     db_sess = db_session.create_session()
-    services = db_sess.query(Service).all()
+    services = db_sess.query(Services).all()
     users = db_sess.query(User).all()
     names = {name.id: name.nickname for name in users}
     return render_template("index.html", services=services, names=names, title='Available vacancies')

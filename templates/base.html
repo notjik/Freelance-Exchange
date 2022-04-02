@@ -14,13 +14,18 @@
         <h1>Freelance exchange</h1>
 
         {% if current_user.is_authenticated %}
-        <p class="navbar-brand">{{ current_user.nickname }}</p>
-        <a class="btn btn-danger right-block" style="margin-right: 0" href="/logout">Logout</a>
+            {% if current_user.surname or current_user.name %}
+                <p class="navbar-brand">{{ current_user.surname }} {{ current_user.name }} ({{ current_user.nickname }})</p>
+                <a class="btn btn-danger right-block" style="margin-right: 0" href="/logout">Logout</a>
+            {% else %}
+                <p class="navbar-brand">{{ current_user.nickname }}</p>
+                <a class="btn btn-danger right-block" style="margin-right: 0" href="/logout">Logout</a>
+            {% endif %}
         {% else %}
-        <p>
-            <a class="btn btn-primary" href="/register">Register</a>
-            <a class="btn btn-success" href="/login">Log in</a>
-        </p>
+            <p>
+                <a class="btn btn-primary" href="/register">Register</a>
+                <a class="btn btn-success" href="/login">Log in</a>
+            </p>
         {% endif %}
     </nav>
 </header>
