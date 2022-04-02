@@ -6,7 +6,7 @@ from data import db_session
 from data.users import User
 from data.jobs import Jobs
 from data.services import Service
-from data.branches import Branches
+from data.branches import Branch
 from data.register import RegisterForm
 from data.login import LoginForm
 
@@ -72,10 +72,10 @@ def reqister():
 @app.route("/")
 def index():
     db_sess = db_session.create_session()
-    jobs = db_sess.query(Jobs).all()
+    services = db_sess.query(Service).all()
     users = db_sess.query(User).all()
     names = {name.id: name.nickname for name in users}
-    return render_template("index.html", jobs=jobs, names=names, title='Available vacancies')
+    return render_template("index.html", services=services, names=names, title='Available vacancies')
 
 
 if __name__ == '__main__':

@@ -4,7 +4,7 @@ from sqlalchemy import orm
 from .db_session import SqlAlchemyBase
 
 
-class Branches(SqlAlchemyBase):
+class Branch(SqlAlchemyBase):
     __tablename__ = 'branches'
 
     id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True, autoincrement=True)
