@@ -7,7 +7,11 @@
     {% for service in services %}
     <div class="row">
         <div class="card" style="width: 18rem;">
-            <img src="data:image/jpg;base64,{{ service.preview }}" class="card-img-top" alt="Download image">
+            {% if service.preview %}
+                <img src="data:;base64,{{ service.preview | b64decode }}" class="card-img-top" alt="Download image">
+            {% else %}
+                <img src="static/image/nofoto.jpg" class="card-img-top" alt="Download image">
+            {% endif %}
             <div class="card-body">
                 <h5 class="card-title">{{ service.service }}</h5>
                 <p class="card-text">{{ service.description }}</p>
@@ -40,5 +44,4 @@
     {% endfor %}
 </div>
 <br>
-
 {% endblock %}

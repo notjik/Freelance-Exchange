@@ -1,6 +1,7 @@
 import flask_login
 from flask import Flask, render_template, redirect
 from flask_login import LoginManager, login_user, login_required, logout_user
+from base64 import b64decode
 
 from data import db_session
 from data.users import User
@@ -12,6 +13,7 @@ from data.login import LoginForm
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
+app.add_template_filter(b64decode)
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -75,6 +77,14 @@ def index():
     users = db_sess.query(User).all()
     names = {name.id: name.nickname for name in users}
     return render_template("index.html", services=services, names=names, title='Available vacancies')
+
+
+@app.route("/myprofile")
+def myprofile():
+    if flask_login.current_user.is_authenticated:
+        return render_template("myprofile.html", title='My profile')
+    else:
+        return redirect("/login")
 
 
 if __name__ == '__main__':
