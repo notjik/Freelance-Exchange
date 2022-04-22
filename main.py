@@ -1,7 +1,8 @@
+import flask
 import flask_login
 from flask import Flask, render_template, redirect
 from flask_login import LoginManager, login_user, login_required, logout_user
-from base64 import b64decode
+from PIL import Image
 
 from data import db_session
 from data.users import User
@@ -13,7 +14,6 @@ from data.login import LoginForm
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
-app.add_template_filter(b64decode)
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -68,6 +68,16 @@ def reqister():
         db_sess.commit()
         return redirect('/login')
     return render_template('register.html', title='Регистрация', form=form)
+
+
+@app.route('/preview/<int:id>')
+def response_preview(id):
+    db_sess = db_session.create_session()
+    image = db_sess.query(Services).get(id)
+    if image:
+        return app.response_class(image.preview, mimetype='application/octet-stream')
+    else:
+        return flask.abort(404)
 
 
 @app.route("/")
