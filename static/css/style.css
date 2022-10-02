@@ -11,11 +11,11 @@ td.ordinary {
     padding: 5px;
 }
 .card-body p{
-    margin: 0; /* Убираем внешний отступ */
-    -webkit-line-clamp: 2; /* Число отображаемых строк */
-    display: -webkit-box; /* Включаем флексбоксы */
-    -webkit-box-orient: vertical; /* Вертикальная ориентация */
-    overflow: hidden; /* Обрезаем всё за пределами блока */
+    margin: 0;
+    -webkit-line-clamp: 1;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
    }
 h4 {
     color: #cccccc;
@@ -25,9 +25,18 @@ p {
     font-size: 14pt;
 }
 
+a.href{
+  color: #011 !important;
+  text-decoration: none
+}
+
 .row {
     display:inline-block;
     padding-left: 2em;
     padding-right: 2em;
     padding-top: 1em;
+}
+
+.noaction {
+    opacity: 0.3;
 }

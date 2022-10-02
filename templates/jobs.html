@@ -2,47 +2,44 @@
 
 {% block content %}
 <meta charset="UTF-8">
-<h2 align="center"><a class="href" href="/jobs">Доступные услуги</a></h2>
+<h2 align="center"><a class="href" href="/">Доступные вакансии</a></h2>
 <div class="container">
-    {% for service in services if service.action == 1 %}
+    {% for job in jobs if job.action == 1 %}
     <div class="row">
         <div class="card" style="width: 18rem;">
-            {% if service.preview %}
-            <img src="{{ url_for('response_service_preview', s_id=service.id) }}" class="card-img-top" height="300"
+            {% if job.preview %}
+            <img src="{{ url_for('response_job_preview', s_id=job.id) }}" class="card-img-top" height="300"
                  alt="Download image">
             {% else %}
             <img src="static/image/nofoto.jpg" class="card-img-top" height="300" width="300" alt="Download image">
             {% endif %}
             <div class="card-body">
-                <h5 class="card-title">{{ service.service }}</h5>
-                <p class="card-text">{{ service.description }}</p>
-                <p class="card-text"><small><small>{{ service.price }} ₽</small></small></p>
-                <!--                <a href="#" class="btn btn-primary">Посмотреть подробнее</a>-->
+                <h5 class="card-title">{{ job.job }}</h5>
+                <p class="card-text">{{ job.description }}</p>
+                <p class="card-text"><small><small>{{ job.price }} ₽</small></small></p>
                 <button type="button" class="btn btn-primary" data-toggle="modal"
-                        data-target="#exampleModalCenter{{ service.id }}">
+                        data-target="#exampleModalCenter{{ job.id }}">
                     Посмотреть подробнее
                 </button>
             </div>
         </div>
     </div>
-    <div class="modal fade" id="exampleModalCenter{{ service.id }}" tabindex="-1" role="dialog"
+    <div class="modal fade" id="exampleModalCenter{{ job.id }}" tabindex="-1" role="dialog"
          aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">{{ service.service }}</h5>
+                    <h5 class="modal-title" id="exampleModalLongTitle">{{ job.job }}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>{{ service.description }}</p>
-                    <hr/>
-                    <p>Категория: {{ branches[service.branch_id] }}</p>
+                    <p>{{ job.description }}</p>
                 </div>
                 <div class="modal-footer">
-                    <p>{{ service.price }} ₽</p>
-                    <a type="button" class="btn btn-info" href="mailto:{{ emails[service.contractor] }}">Написать на
+                    <p>{{ job.price }} ₽</p>
+                    <a type="button" class="btn btn-info" href="mailto:{{ emails[job.client] }}">Написать на
                         почту</a>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
                 </div>

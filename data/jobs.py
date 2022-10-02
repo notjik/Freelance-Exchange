@@ -11,6 +11,7 @@ class Jobs(SqlAlchemyBase):
     id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True, autoincrement=True)
     job = sqlalchemy.Column(sqlalchemy.String, nullable=True)
     client = sqlalchemy.Column(sqlalchemy.Integer, sqlalchemy.ForeignKey("users.id"))
+    description = sqlalchemy.Column(sqlalchemy.String, nullable=True)
     price = sqlalchemy.Column(sqlalchemy.Float)
     preview = sqlalchemy.Column(sqlalchemy.LargeBinary)
     start_date = sqlalchemy.Column(sqlalchemy.DateTime, default=datetime.datetime.now)
